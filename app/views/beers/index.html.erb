@@ -17,6 +17,7 @@
       <tr>
         <td><%= beer.name %></td>
         <td><%= beer.style %></td>
+        <% byebug if beer.brewery.nil? %>
         <td><%= link_to beer.brewery.name, beer.brewery %></td>
         <td><%= link_to 'Show', beer %></td>
         <td><%= link_to 'Edit', edit_beer_path(beer) %></td>
