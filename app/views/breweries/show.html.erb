@@ -12,5 +12,15 @@
  <% end %>
 </p>
 
+<p>
+  Has 
+  <%= pluralize(@brewery.ratings.count, "rating") %>
+  
+  <% unless @brewery.ratings.empty? %>
+   , average
+   <%= @brewery.ratings.average(:score).to_f %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
 <%= link_to 'Back', breweries_path %>
