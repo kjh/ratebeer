@@ -22,7 +22,8 @@
    Has 
    <%= pluralize(@beer.ratings.count, "rating") %>
    , average
-   <%= @beer.ratings.average(:score).to_f %>
+   <!-- <%= @beer.ratings.average(:score).to_f %> -->
+   <%= @beer.average_rating %>
   <% end %>
 </p>
 <%= link_to 'Edit', edit_beer_path(@beer) %>

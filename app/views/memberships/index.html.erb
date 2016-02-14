@@ -1,0 +1,11 @@
+<h2>Membersips</h2>
+
+<ul>
+ <% @memberships.each do |membership| %>
+   <li> <%= membership %> <%= link_to "#{membership.user.username}", membership.user %></li>
+ <% end %>
+</ul>
+
+<p>
+  <%= link_to 'New Membership', new_membership_path %>
+</p> 
