@@ -24,7 +24,6 @@ class PlacesController < ApplicationController
           break
         end
       end
-      @location = "Kaivokatu+1%2C+00101+Helsinki"
     end
   end
 
