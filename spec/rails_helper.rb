@@ -1,3 +1,4 @@
+require 'webmock/rspec'
 require 'simplecov'
 SimpleCov.start('rails')
 require 'capybara/rspec'

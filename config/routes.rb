@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :places, only:[:index, :show]
+  # mikä generoi samat polut kuin seuraavat kaksi
+  # get 'places', to:'places#index'
+  # get 'places/:id', to:'places#show'
+
+  post 'places', to:'places#search'
+  
+  #get 'places', to: 'places#index'
+  #post 'places', to:'places#search'
+  
   resources :memberships, only: [:index, :new, :create, :destroy]
   resources :beer_clubs
   resources :users

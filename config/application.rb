@@ -24,6 +24,6 @@ module Ratebeer
     config.active_record.raise_in_transactional_callbacks = true
     
     #load module
-    #config.autoload_paths += Dir["#{Rails.root}/lib"]
+    config.autoload_paths += Dir["#{Rails.root}/lib"]
   end
 end

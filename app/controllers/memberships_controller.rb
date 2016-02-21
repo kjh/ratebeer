@@ -13,7 +13,9 @@ class MembershipsController < ApplicationController
 
     if @membership.save
       current_user.memberships << @membership
-      redirect_to user_path current_user
+      #redirect_to user_path current_user
+      
+      redirect_to beer_clubs_path, notice: "#{current_user.username}, welcome to the club!"
     else
       @beer_clubs = BeerClub.all
       render :new

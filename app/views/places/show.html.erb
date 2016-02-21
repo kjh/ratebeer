@@ -1,0 +1,11 @@
+<h2><%= @place.name %></h2>
+<p><%= @place.street %></p>
+<p><%= @place.city %></p>
+<p><%= @place.zip %></p>
+<p>Kartta</p>
+
+<div style="float:left">
+<iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place?q=#{ERB::Util.url_encode(@place.street)}&key=..." allowfullscreen></iframe>
+</div>  
+

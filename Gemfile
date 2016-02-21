@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt', '~> 3.1.7'
 
+# places search
+gem 'httparty'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -56,6 +59,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'webmock'
 end
 
 group :development do
