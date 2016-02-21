@@ -1,5 +1,7 @@
-== README
+README
 
-[![Build Status](https://travis-ci.org/kjh/ratebeer-public.png)](https://travis-ci.org/kjh/ratebeer-public)
+[![Build Status](https://api.travis-ci.org/kjh/ratebeer.png)](https://travis-ci.org/kjh/ratebeer)
+
+
 
 https://fathomless-scrubland-60763.herokuapp.com/breweries
