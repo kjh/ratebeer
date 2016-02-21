@@ -12,12 +12,11 @@ describe "Beers" do
     }.to change{Beer.count}.from(0).to(1)
   end
   
-  it "missing name" do
+  it "with missing name is not saved" do
     visit new_beer_path
 
     click_button "Create Beer"
 
-    
     expect(Beer.count).to eq(0)
     
     expect(page).to have_content "Name can't be blank"

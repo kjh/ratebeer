@@ -1,3 +1,0 @@
-== README
-
-https://fathomless-scrubland-60763.herokuapp.com/breweries
