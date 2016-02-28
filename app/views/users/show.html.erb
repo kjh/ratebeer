@@ -8,12 +8,12 @@
   Has made <%= pluralize(@user.ratings.count, 'rating') %>
 </p>
 
-<ul>
+<ul class="list-group">
     <% @user.ratings.each do |rating| %>
-      <li>
+      <li class="list-group-item">
         <%= rating %>
         <% if @user == current_user %>
-            <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'delete', rating, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger'  %>
         <% end %>
       </li>
     <% end %>
@@ -21,20 +21,20 @@
   
   <p>Clubs</p>
   
-  <ul>
+  <ul class="list-group">
       <% @user.memberships.each do |membership| %>
-        <li>
+        <li class="list-group-item">
           <%= membership %>
           <% if @user == current_user %>
-              <%= link_to 'delete', membership, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'delete', membership, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger'  %>
           <% end %>
         </li>
       <% end %>
     </ul>
 
 <% if current_user == @user %>
-  <%= link_to 'Edit', edit_user_path(@user) %>
-  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_user_path(@user), class:'btn btn-success' %>
+  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger'  %>
 <% end %>
 
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path, class:'btn btn-primary' %>

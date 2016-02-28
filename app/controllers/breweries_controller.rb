@@ -5,7 +5,9 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
-    @breweries = Brewery.all
+    #@breweries = Brewery.all
+    @active_breweries = Brewery.active #where(active:true)
+    @retired_breweries = Brewery.retired #where(active:[nil, false])
   end
 
   # GET /breweries/1
@@ -70,7 +72,7 @@ class BreweriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def brewery_params
-      params.require(:brewery).permit(:name, :year)
+      params.require(:brewery).permit(:name, :year, :active)
     end
     
     def authenticate

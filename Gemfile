@@ -29,6 +29,11 @@ gem 'bcrypt', '~> 3.1.7'
 # places search
 gem 'httparty'
 
+gem 'bootstrap-sass'
+group :development do
+  gem 'rails_layout'
+end
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

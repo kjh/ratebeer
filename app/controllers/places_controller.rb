@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
   def index
     #rating = Rating.create params.require(:rating).permit(:score, :beer_id)
 
-    # talletetaan tehdyn reittauksen sessioon
+    #tallentetaan tehdyn reittauksen sessioon
     #session[:last_search] = "#{rating.beer.name} #{rating.score} points"
   end
   

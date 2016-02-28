@@ -20,8 +20,8 @@
    <p>Name: <%= link_to "#{user.username}", user %></p>
  <% end %>
 
-<%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |
-<%= link_to 'Back', beer_clubs_path %>
+<%= link_to 'Edit', edit_beer_club_path(@beer_club), class:'btn btn-primary' %>
+<%= link_to 'Back', beer_clubs_path, class:'btn btn-primary' %>
 
 <% if current_user && !Membership.is_a_member?(current_user.id)%>
 <h2>Join new beer club</h2>
@@ -29,7 +29,7 @@
 <%= form_for(@membership) do |f| %>
   <input type="hidden" value="<%= @beer_club.id %>" name="membership[beer_club_id]" id="membership_beer_club_id" />
   
-  <%= f.submit %>
+  <%= f.submit class:'btn btn-primary' %>
 
 <% end %>
 

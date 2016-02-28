@@ -20,4 +20,12 @@ class User < ActiveRecord::Base
     #ratings.sort_by{ |r| r.score }.last.beer # hakee kaikki + järjestys muistissa
     ratings.order(score: :desc).limit(1).first.beer # tietokannassa
   end
+    
+  def self.top(n)    
+     sorted_by_rating_in_desc_order = User.all.sort_by{ |u| -(u.ratings.count) }
+     sorted_by_rating_in_desc_order.take(3)
+     
+     # palauta listalta parhaat n kappaletta
+     # miten? ks. http://www.ruby-doc.org/core-2.1.0/Array.html
+  end 
 end
