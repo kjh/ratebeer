@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   def favorite_beer
     return nil if ratings.empty?   # palautetaan nil jos reittauksia ei ole
     #ratings.first.beer             # palataan ensimmaiseen reittaukseen liittyvä olut
-    #ratings.sort_by{ |r| r.score }.last.beer # hakee kaikki + järjestys muistissa
+    #ratings.sort_by{ |r| r.score }.last.beer # hakee kaikki + järjestys muistissa + eager load optimointi
     ratings.order(score: :desc).limit(1).first.beer # tietokannassa
   end
     

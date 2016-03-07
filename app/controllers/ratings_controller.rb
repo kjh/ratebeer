@@ -3,8 +3,10 @@ class RatingsController < ApplicationController
     @top_beers = Rating.top_beers
     @top_breweries = Rating.top_breweries
     @top_raters = Rating.top_raters
-    @top_styles = Rating.top_styles
+    @top_styles = Style.top(3)
     @recent_ratings = Rating.recent
+    # Json-jbuilder-template respond_to
+    @ratings = Rating.all
   end
   
   def new

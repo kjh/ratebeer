@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228190443) do
+ActiveRecord::Schema.define(version: 20160307182547) do
 
   create_table "beer_clubs", force: :cascade do |t|
     t.string   "name"
@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20160228190443) do
 
   create_table "beers", force: :cascade do |t|
     t.string   "name"
-    t.string   "style"
     t.integer  "brewery_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "style_id"
   end
 
   create_table "breweries", force: :cascade do |t|
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160228190443) do
     t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.boolean  "confirmed"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -52,11 +53,20 @@ ActiveRecord::Schema.define(version: 20160228190443) do
     t.integer  "user_id"
   end
 
+  create_table "styles", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
   end
+
+  add_index "users", ["username"], name: "index_users_on_username"
 
 end

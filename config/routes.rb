@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :styles
+  get 'ngbeerlist', to:'beers#nglist'
+  get 'ngbrewerylist', to:'breweries#nglist'
+  get 'beerlist', to:'beers#list'
   resources :places, only:[:index, :show]
   # mikä generoi samat polut kuin seuraavat kaksi
   # get 'places', to:'places#index'

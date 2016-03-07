@@ -4,6 +4,9 @@ class SessionsController < ApplicationController
   end
   
   def create
+    #Operaation suorittamista varten tietokanta joutuu käymään läpi koko users-taulun. 
+    #Haut olion id:n suhteen ovat nopeampia, sillä jokainen taulu on indeksöity id:iden suhteen. 
+    #Indeksi toimii hajautustaulun tavoin, eli tarjoaa "O(1)"-ajassa toimivan pääsyn haettuun tietokannan riviin.
         user = User.find_by username: params[:username]
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id

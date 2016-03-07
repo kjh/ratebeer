@@ -1,13 +1,38 @@
 class BreweriesController < ApplicationController
+  before_action :set_order_and_reverse, only: [:index]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate, only: [:destroy]
+  
+  # GET /ngbrewerieslist
+  def nglist
+  end
 
   # GET /breweries
   # GET /breweries.json
   def index
-    #@breweries = Brewery.all
-    @active_breweries = Brewery.active #where(active:true)
-    @retired_breweries = Brewery.retired #where(active:[nil, false])
+    unless fragment_exist?( 'brewerylist-#{@order}-#{@reverse}' )
+      # json
+      @breweries = Brewery.all
+      
+      #(byebug)
+      
+      @active_breweries = case @order
+        when 'name' then Brewery.active.sort_by &:name
+        when 'year' then Brewery.active.sort_by &:year  
+      end
+      @retired_breweries = case @order
+        when 'name' then Brewery.retired.sort_by &:name
+        when 'year' then Brewery.retired.sort_by &:year  
+      end
+      
+      if @reverse
+        @active_breweries.reverse!
+        @retired_breweries.reverse!
+      end
+      
+      #@active_breweries = Brewery.active #where(active:true)
+      #@retired_breweries = Brewery.retired #where(active:[nil, false])
+    end
   end
 
   # GET /breweries/1
@@ -27,6 +52,8 @@ class BreweriesController < ApplicationController
   # POST /breweries
   # POST /breweries.json
   def create
+    ["brewerylist-name-false", "brewerylist-name-true", "brewerylist-year-false", "brewerylist-year-true"].each{ |f| expire_fragment(f) }
+    
     @brewery = Brewery.new(brewery_params)
 
     respond_to do |format|
@@ -43,6 +70,8 @@ class BreweriesController < ApplicationController
   # PATCH/PUT /breweries/1
   # PATCH/PUT /breweries/1.json
   def update
+    ["brewerylist-name-false", "brewerylist-name-true", "brewerylist-year-false", "brewerylist-year-true"].each{ |f| expire_fragment(f) }
+    
     respond_to do |format|
       if @brewery.update(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
@@ -57,6 +86,8 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1
   # DELETE /breweries/1.json
   def destroy
+    ["brewerylist-name-false", "brewerylist-name-true", "brewerylist-year-false", "brewerylist-year-true"].each{ |f| expire_fragment(f) }
+    
     @brewery.destroy
     respond_to do |format|
       format.html { redirect_to breweries_url, notice: 'Brewery was successfully destroyed.' }
@@ -65,6 +96,15 @@ class BreweriesController < ApplicationController
   end
 
   private
+    def set_order_and_reverse
+      @order = params[:order] || 'name'
+      if session[:order_reverse].nil?
+        @reverse = session[:order_reverse] = false
+      else
+        @reverse = session[:order_reverse] = !session[:order_reverse]
+      end
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
       @brewery = Brewery.find(params[:id])
